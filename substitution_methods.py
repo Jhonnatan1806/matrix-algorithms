@@ -1,6 +1,6 @@
 import numpy as np
 
-def progressive_substitution(A,b):
+def progressive(A,b):
   n = len(b)
   X = np.zeros((n,1), float)
   for i in range(n):
@@ -12,7 +12,7 @@ def progressive_substitution(A,b):
     X[i] = (b[i] - summation)/A[i,i]
   return X
 
-def regressive_substitution(A,b):
+def regressive(A,b):
   n = len(b)
   X = np.zeros((n,1), float)
   for i in reversed(range(n)):
@@ -25,24 +25,24 @@ def regressive_substitution(A,b):
   return X
 
 def main():
-  # using progressive substitution
+  # progressive substitution
   A = np.array([[2,0,0],
                 [4,3,0],
                 [2,1,1]])
   b = np.array([[1],
                 [5],
                 [6]])
-  x = progressive_substitution(A,b) 
+  x = progressive(A,b) 
   print('progressive substitution\n',x)
-  # using regressive substitution
+  # regressive substitution
   A = np.array([[1,1,2],
                 [0,3,4],
                 [0,0,2]])
   b = np.array([[6],
                 [5],
                 [1]])
-  x = regressive_substitution(A,b)
+  x = regressive(A,b)
   print('regressive substitution\n',x) 
-
+  
 if __name__ == '__main__':
   main() 

@@ -1,7 +1,7 @@
 import numpy as np
 
 from elemental_operations import row_eo
-from substitution_methods import regressive_substitution
+from substitution_methods import regressive
 
 def augmented_matrix(A,b):
   r,c = A.shape

@@ -2,7 +2,7 @@ import numpy as np
 
 from elemental_operations import row_eo
 
-# Pivote Parcial
+# Partial Pivot
 def partial_pivot(A):
   U = np.copy(A).astype('float64')
   Log = []
