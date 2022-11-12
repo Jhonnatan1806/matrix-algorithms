@@ -19,6 +19,40 @@ def palu(A):
       row_eo(data,L,mode='kRij')
   return P,L,U
 
+def crout(A):
+  n = len(A)
+  U = np.eye(n)
+  L = np.zeros((n,n))
+  for j in range(n):
+    for i in range(j):
+      summation = 0
+      for k in range(i):
+        summation += L[i,k]*U[k,j]
+      U[i,j] = (A[i,j]-summation)/L[i,i]
+    for i in range(j,n):
+      summation = 0
+      for k in range(j):
+        summation += L[i,k]*U[k,j]
+      L[i,j] = (A[i,j]-summation)/U[j,j]
+  return L,U
+
+def doolittle(A):
+  n = len(A)
+  L = np.eye(n)
+  U = np.zeros((n,n))
+  for i in range(n):
+    for j in range(i):
+      summation = 0
+      for k in range(j):
+        summation += L[i,k]*U[k,j]
+      L[i,j] = (A[i,j]-summation)/U[j,j]
+    for j in range(i,n):
+      summation = 0
+      for k in range(i):
+        summation += L[i,k]*U[k,j]
+      U[i,j] = (A[i,j]-summation)/L[i,i]
+  return L,U
+
 def cholesky(A):
   n = len(A)
   L = np.zeros((n, n),float)
@@ -44,19 +78,34 @@ def main():
                 [0,1,2],
                 [2,1,0]])
   P,L,U = palu(A)
+  print('\nPA = LU factorization')
   if not np.array_equal(P,np.eye(len(A))):
     print('Matrix P\n',P)
   print('Matrix A\n',A)
   print('Matrix L\n',L)
   print('Matrix U\n',U)
+  # crout factorization
+  L,U = crout(A)
+  print('\nCrout factorization')
+  print('Matrix A\n',A)
+  print('Matrix L\n',L)
+  print('Matrix U\n',U)
+  # doolittle factorization
+  L,U = doolittle(A)
+  print('\nDoolittle factorization')
+  print('Matrix A\n',A)
+  print('Matrix L\n',L)
+  print('Matrix U\n',U)
+
   # cholesky factorization
   A = np.array([[4,0,1],
                 [0,4,1],
                 [1,1,4]])
   L = cholesky(A)
+  print('\nCholesky factorization')
   print('Matrix A\n',A)
   print('Matrix L\n',L)
-  print('Matrix L.L^t\n',np.dot(L,np.transpose(L)))
+  print('Matrix L^t\n',np.transpose(L))
   
   
 if __name__ == '__main__':
