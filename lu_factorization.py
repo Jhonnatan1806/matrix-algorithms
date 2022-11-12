@@ -3,7 +3,7 @@ import numpy as np
 from partial_pivot import partial_pivot
 from elemental_operations import row_eo
 
-def lu_factorization(A):
+def factorization_lu(A):
   n = len(A)
   P = np.eye(n)
   L = np.eye(n)
@@ -23,7 +23,7 @@ def main():
   A = np.array([[2,1,2],
                 [0,1,2],
                 [2,1,0]])
-  P,L,U = lu_factorization(A)
+  P,L,U = factorization_lu(A)
   if not np.array_equal(P,np.eye(len(A))):
   	print('Matrix P\n',P)
   print('Matrix A\n',A)
