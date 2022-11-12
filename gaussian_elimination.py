@@ -35,17 +35,18 @@ def gaussian_elimination(A,b):
   return x
 
 def main():
+  # gaussian elimination
   A = np.array([[2,1,2],
                 [0,1,2],
                 [2,1,0]])
   b = np.array([[4],
                 [3],
                 [2]])
+  print('Gaussian elimination')
   print('Matrix A\n',A)
   print('Matrix b\n',b)
-  # gaussian elimination
   x = gaussian_elimination(A,b)
-  print('Solution x\n',x)
+  print('Matrix x\n',x)
 
 if __name__ == '__main__':
   main() 

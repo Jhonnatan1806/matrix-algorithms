@@ -96,7 +96,6 @@ def main():
   print('Matrix A\n',A)
   print('Matrix L\n',L)
   print('Matrix U\n',U)
-
   # cholesky factorization
   A = np.array([[4,0,1],
                 [0,4,1],

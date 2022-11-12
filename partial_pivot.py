@@ -24,13 +24,14 @@ def partial_pivot(A):
   return Log, U
 
 def main():
+  # partial pivot
   A = np.array([[2,1,2],
                 [0,1,2],
                 [2,1,0]])
-  print('Matrix A\n',A)
   Log,U = partial_pivot(A)
+  print('partial pivot')
+  print('Matrix A\n',A)
   print('Matrix U\n',U)
-  print('Log elemental operations\n',Log)
 
 if __name__ == '__main__':
   main() 
