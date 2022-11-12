@@ -1,6 +1,6 @@
 import numpy as np
 
-def cholesky_method(A):
+def factorization_cholesky(A):
   n = len(A)
   L = np.zeros((n, n),float)
   for j in range(n):
@@ -23,7 +23,7 @@ def main():
   A = np.array([[4,0,1],
                 [0,4,1],
                 [1,1,4]])
-  L = cholesky_method(A)
+  L = factorization_cholesky(A)
   print('Matrix A\n',A)
   print('Matrix L\n',L)
   print('Matrix L.L^t\n',np.dot(L,np.transpose(L)))
