@@ -31,7 +31,7 @@ def gaussian_elimination(A,b):
       row_eo([j,i,-k],M,mode='kRij')
   # regressive substitution
   # A = M[:,:n] y b = M[:,n:]
-  x = regressive_substitution(M[:,:n] ,M[:,n:])
+  x = regressive(M[:,:n] ,M[:,n:])
   return x
 
 def main():
