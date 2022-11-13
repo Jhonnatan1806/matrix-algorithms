@@ -3,6 +3,13 @@ import numpy as np
 from partial_pivot import partial_pivot
 from elemental_operations import row_eo
 
+def lu_validation(A):
+  n = len(A)
+  for i in range(n):
+    if np.linalg.det(A[:i,:i]) == 0:
+      return False
+  return True
+
 def palu(A):
   n = len(A)
   P = np.eye(n)
