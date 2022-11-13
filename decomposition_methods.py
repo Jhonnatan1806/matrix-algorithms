@@ -50,10 +50,15 @@ def parllet_reid(A):
 	pass
 
 def main():
+	# svd decomposition
 	A = np.array([[3,2,2],
 				[2,3,-2]])
-	svd(A)
-	pass
+	U,E,V = svd(A)
+	print('svd decomposition')
+	print('Matrix A\n',A)
+	print('Matrix U\n',U)
+	print('Matrix E\n',E)
+	print('Matrix V\n',V)
 
 if __name__ == '__main__':
 	main() 
