@@ -3,20 +3,32 @@ import numpy as np
 def jacobi(A,b,x_0,i):
 	# A = U+L+D
 	D = np.diag(np.diag(A))
-	D_inv = np.linalg.inv(D)
 	U = np.triu(A)-D
 	L = np.tril(A)-D
+	Dinv = np.linalg.inv(D)
+	# x^k+1 = D'b-D'(L+U)x^k
 	iteration = 0
 	x_k = x_0
-	# x^k+1 = D'b-D'(L+U)x^k
 	while iteration < i:
 		Rx = np.dot(L+U,x_k) 
-		x_k = np.dot(D_inv,b)-np.dot(D_inv,Rx)
+		x_k = np.dot(Dinv,b) - np.dot(Dinv,Rx)
 		iteration += 1 
-	print(x_k)
+	return x_k
 
-def gauss_seidel(A,x0,i):
-	pass
+def gauss_seidel(A,b,x_0,i):
+	# A = U + D + L
+	D = np.diag(np.diag(A))
+	U = np.triu(A)-D
+	L = np.tril(A)-D
+	DLinv = np.linalg.inv(D+L)
+	# x^k+1 = -(D+L)'Ux + (D+L)'b
+	iteration = 0
+	x_k = x_0
+	while iteration < i:
+		RU = np.dot(DLinv,U) 
+		x_k = -np.dot(RU,x_k) + np.dot(DLinv,b)
+		iteration += 1 
+	return x_k
 
 def attached_conjugate(A,x0,i):
 	pass
@@ -32,7 +44,11 @@ def main():
 	x_0 = np.array([[0],
                 [0],
                 [0]])
-	jacobi(A,b,x_0,2)
+	x = jacobi(A,b,x_0,2)
+	print('Jacobi method\n',x)
+	# gauss-seidel iteration method 
+	x = gauss_seidel(A,b,x_0,1)
+	print('Gauss-Seidel method\n',x)
   
 
 if __name__ == '__main__':
